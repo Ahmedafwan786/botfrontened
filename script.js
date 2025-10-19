@@ -9,11 +9,11 @@ async function sendMessage() {
   displayMessage(message, "user");
 
   try {
-    const response = await fetch("http://localhost:8080/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message }),
-    });
+    const response = await fetch("https://botbackend-1-scqx.onrender.com", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ message }),
+});
 
     if (!response.ok) throw new Error("Network error: " + response.statusText);
 
@@ -38,9 +38,4 @@ function displayMessage(text, sender) {
 sendButton.addEventListener("click", sendMessage);
 userInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") sendMessage();
-});
-const response = await fetch("https://botbackend-1-scqx.onrender.com", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ message }),
 });
