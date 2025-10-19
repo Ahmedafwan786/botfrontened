@@ -1,0 +1,157 @@
+/* 🌈 Reset & Base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* 🚫 No scroll */
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #1d2671, #c33764);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+/* 🩺 App Container */
+#app {
+  width: 100%;
+  max-width: 420px;
+  height: 90vh;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Title */
+.title {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+/* 💬 Chat Box */
+.chat-container {
+  flex: 1;
+  width: 100%;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.chat-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Messages */
+.message {
+  margin: 8px 0;
+  padding: 10px 14px;
+  border-radius: 12px;
+  max-width: 85%;
+  word-wrap: break-word;
+  font-size: 0.95rem;
+}
+
+.user {
+  background: #4caf50;
+  align-self: flex-end;
+}
+
+.bot {
+  background: #222;
+  align-self: flex-start;
+}
+
+/* ✏️ Input Section */
+.input-container {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  align-items: center;
+}
+
+input, button {
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+#ageInput {
+  width: 80px;
+  text-align: center;
+}
+
+#userInput {
+  flex: 1;
+}
+
+input {
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+}
+
+button {
+  background: #ff5722;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #e64a19;
+}
+
+/* ⌨️ Typing Animation */
+.typing {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: white;
+  border-radius: 50%;
+  animation: blink 1.4s infinite both;
+}
+
+.typing:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typing:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes blink {
+  0%, 80%, 100% { opacity: 0; }
+  40% { opacity: 1; }
+}
+
+/* 📱 Full-Screen Fixed for Mobile */
+@media (max-width: 768px) {
+  #app {
+    max-width: 95%;
+    height: 90vh;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .message {
+    font-size: 0.9rem;
+  }
+
+  input, button {
+    font-size: 0.9rem;
+  }
+}
