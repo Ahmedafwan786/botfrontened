@@ -9,7 +9,7 @@ async function sendMessage() {
   displayMessage(message, "user");
 
   try {
-    const response = await fetch("https://botbackend-1-scqx.onrender.com", {
+    const response = await fetch("https://botbackend-2-scqx.onrender.com", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({ message }),
