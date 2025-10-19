@@ -1,41 +1,71 @@
-const chatContainer = document.querySelector(".chat-container");
-const userInput = document.querySelector("#user-input");
-const sendButton = document.querySelector("#send-button");
+document.addEventListener("DOMContentLoaded", function () {
+  var chatContainer = document.querySelector(".chat-container");
+  var userInput = document.querySelector("#user-input");
+  var ageInput = document.querySelector("#age-input");
+  var sendButton = document.querySelector("#send-button");
 
-async function sendMessage() {
-  const message = userInput.value.trim();
-  if (!message) return;
-
-  displayMessage(message, "user");
-
-  const response = await fetch("https://botbackend-2-amt7.onrender.com", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ message }),
-});
-
-
-    if (!response.ok) throw new Error("Network error: " + response.statusText);
-
-    const data = await response.json();
-    displayMessage(data.reply, "bot");
-  } catch (error) {
-    console.error("Chat error:", error);
-    displayMessage("Sorry, I couldn't reach the AI service.", "bot");
+  if (!chatContainer || !userInput || !sendButton) {
+    console.error("Required elements not found in DOM");
+    return;
   }
 
-  userInput.value = "";
-}
+  var isWaiting = false; // Prevent multiple requests
 
-function displayMessage(text, sender) {
-  const msgDiv = document.createElement("div");
-  msgDiv.classList.add("message", sender);
-  msgDiv.textContent = text;
-  chatContainer.appendChild(msgDiv);
-  chatContainer.scrollTop = chatContainer.scrollHeight;
-}
+  function displayMessage(text, sender) {
+    var msgDiv = document.createElement("div");
+    msgDiv.classList.add("message", sender);
+    msgDiv.textContent = text;
+    chatContainer.appendChild(msgDiv);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+    return msgDiv; // Return so we can update it later
+  }
 
-sendButton.addEventListener("click", sendMessage);
-userInput.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") sendMessage();
+  async function sendMessage() {
+    if (isWaiting) return; // Ignore clicks while waiting
+
+    var message = userInput.value.trim();
+    var age = ageInput.value.trim();
+    if (!message) return;
+
+    // Display user message
+    displayMessage("You (" + (age || "N/A") + "): " + message, "user");
+
+    // Display bot loading message
+    var loadingMsg = displayMessage("AI is typing...", "bot");
+    loadingMsg.classList.add("loading");
+
+    isWaiting = true;
+    sendButton.disabled = true;
+
+    try {
+      var response = await fetch("https://botbackend-3-h103.onrender.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: message, age: age })
+      });
+
+      if (!response.ok) throw new Error("Network error: " + response.statusText);
+
+      var data = await response.json();
+      loadingMsg.classList.remove("loading");
+      loadingMsg.textContent = data.reply;
+
+    } catch (error) {
+      console.error("Chat error:", error);
+      loadingMsg.classList.remove("loading");
+      loadingMsg.textContent = "Sorry, I couldn't reach the AI service.";
+    } finally {
+      userInput.value = "";
+      ageInput.value = "";
+      isWaiting = false;
+      sendButton.disabled = false;
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+  }
+
+  // Event listeners
+  sendButton.addEventListener("click", sendMessage);
+  userInput.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") sendMessage();
+  });
 });
