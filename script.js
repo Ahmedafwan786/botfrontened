@@ -8,12 +8,12 @@ async function sendMessage() {
 
   displayMessage(message, "user");
 
-  try {
-    const response = await fetch("https://botbackend-2-amt7.onrender.com", {
+  const response = await fetch("https://botbackend-2-amt7.onrender.com", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({ message }),
 });
+
 
     if (!response.ok) throw new Error("Network error: " + response.statusText);
 
