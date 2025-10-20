@@ -1,314 +1,160 @@
-/* 🌈 Reset & Base */
+/* === RESET === */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", "Segoe UI", Arial, sans-serif;
 }
 
-html, body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden; /* 🚫 No scroll */
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #1d2671, #c33764);
+/* === BODY === */
+body {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
-  color: #fff;
+  align-items: center;
+  color: #e2e8f0;
 }
 
-/* 🩺 App Container */
+/* === APP CONTAINER === */
 #app {
-  width: 100%;
-  max-width: 420px;
+  background: #111827;
+  width: 95%;
+  max-width: 500px;
   height: 90vh;
-  background: rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
+  border: 1px solid #334155;
 }
 
-/* Title */
+/* === HEADER === */
 .title {
-  font-size: 1.8rem;
   text-align: center;
-  margin-bottom: 5px;
+  background: #1e40af; /* Navy Blue */
+  color: #e0f2fe;
+  padding: 16px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
-/* 💬 Chat Box */
+/* === CHAT AREA === */
 .chat-container {
   flex: 1;
-  width: 100%;
   overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  border-radius: 15px;
-  padding: 10px;
+  padding: 15px;
+  background: #0f172a;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.chat-container::-webkit-scrollbar {
-  display: none;
-}
-
-/* Messages */
+/* === MESSAGES === */
 .message {
-  margin: 8px 0;
   padding: 10px 14px;
-  border-radius: 12px;
-  max-width: 85%;
+  border-radius: 10px;
+  max-width: 80%;
   word-wrap: break-word;
+  line-height: 1.5;
   font-size: 0.95rem;
+  color: #f1f5f9;
 }
 
-.user {
-  background: #4caf50;
+.message.user {
   align-self: flex-end;
+  background: #0284c7; /* Aqua Blue */
+  color: #f0f9ff;
+  border-top-right-radius: 0;
 }
 
-.bot {
-  background: #222;
+.message.bot {
   align-self: flex-start;
+  background: #1e293b; /* Deep navy bubble */
+  color: #e2e8f0;
+  border-top-left-radius: 0;
 }
 
-/* ✏️ Input Section */
+/* === INPUT AREA === */
 .input-container {
   display: flex;
-  gap: 8px;
-  width: 100%;
   align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: #111827;
+  padding: 12px;
+  border-top: 1px solid #334155;
 }
 
-input, button {
-  padding: 10px;
-  border: none;
-  border-radius: 10px;
-  font-size: 1rem;
+.input-container input {
+  height: 42px;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 0 10px;
+  font-size: 0.9rem;
+  background: #1e293b;
+  color: #e2e8f0;
+  outline: none;
 }
 
-#ageInput {
-  width: 80px;
-  text-align: center;
+.input-container input::placeholder {
+  color: #94a3b8;
 }
 
 #userInput {
   flex: 1;
 }
 
-input {
-  background: rgba(255, 255, 255, 0.9);
-  color: #000;
-}
-
-button {
-  background: #ff5722;
-  color: #fff;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-button:hover {
-  background: #e64a19;
-}
-
-/* ⌨️ Typing Animation */
-.typing {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  background-color: white;
-  border-radius: 50%;
-  animation: blink 1.4s infinite both;
-}
-
-.typing:nth-child(2) {
-  animation-delay: 0.2s;
-}
-.typing:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-@keyframes blink {
-  0%, 80%, 100% { opacity: 0; }
-  40% { opacity: 1; }
-}
-
-/* 📱 Full-Screen Fixed for Mobile */
-@media (max-width: 768px) {
-  #app {
-    max-width: 95%;
-    height: 90vh;
-  }
-
-  .title {
-    font-size: 1.5rem;
-  }
-
-  .message {
-    font-size: 0.9rem;
-  }
-
-  input, button {
-    font-size: 0.9rem;
-  }
-}
-/* 🌈 Reset & Base */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html, body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden; /* 🚫 No scroll */
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #1d2671, #c33764);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-}
-
-/* 🩺 App Container */
-#app {
-  width: 100%;
-  max-width: 420px;
-  height: 90vh;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-}
-
-/* Title */
-.title {
-  font-size: 1.8rem;
-  text-align: center;
-  margin-bottom: 5px;
-}
-
-/* 💬 Chat Box */
-.chat-container {
-  flex: 1;
-  width: 100%;
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  border-radius: 15px;
-  padding: 10px;
-}
-
-.chat-container::-webkit-scrollbar {
-  display: none;
-}
-
-/* Messages */
-.message {
-  margin: 8px 0;
-  padding: 10px 14px;
-  border-radius: 12px;
-  max-width: 85%;
-  word-wrap: break-word;
-  font-size: 0.95rem;
-}
-
-.user {
-  background: #4caf50;
-  align-self: flex-end;
-}
-
-.bot {
-  background: #222;
-  align-self: flex-start;
-}
-
-/* ✏️ Input Section */
-.input-container {
-  display: flex;
-  gap: 8px;
-  width: 100%;
-  align-items: center;
-}
-
-input, button {
-  padding: 10px;
-  border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-}
-
 #ageInput {
-  width: 80px;
+  width: 100px;
+  min-width: 80px;
   text-align: center;
 }
 
-#userInput {
-  flex: 1;
-}
-
-input {
-  background: rgba(255, 255, 255, 0.9);
-  color: #000;
-}
-
-button {
-  background: #ff5722;
-  color: #fff;
+/* === BUTTON === */
+.input-container button {
+  background: #0284c7;
+  color: #f0f9ff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.2s ease-in-out;
 }
 
-button:hover {
-  background: #e64a19;
+.input-container button:hover {
+  background: #0369a1;
 }
 
-/* ⌨️ Typing Animation */
-.typing {
-  display: inline-block;
+/* === SCROLLBAR STYLING === */
+.chat-container::-webkit-scrollbar {
   width: 6px;
-  height: 6px;
-  background-color: white;
-  border-radius: 50%;
-  animation: blink 1.4s infinite both;
+}
+.chat-container::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 10px;
 }
 
-.typing:nth-child(2) {
-  animation-delay: 0.2s;
-}
-.typing:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-@keyframes blink {
-  0%, 80%, 100% { opacity: 0; }
-  40% { opacity: 1; }
-}
-
-/* 📱 Full-Screen Fixed for Mobile */
-@media (max-width: 768px) {
+/* === RESPONSIVE === */
+@media (max-width: 480px) {
   #app {
-    max-width: 95%;
-    height: 90vh;
+    height: 95vh;
   }
-
   .title {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
-
-  .message {
-    font-size: 0.9rem;
+  .input-container {
+    flex-direction: column;
+    align-items: stretch;
   }
-
-  input, button {
-    font-size: 0.9rem;
+  #ageInput {
+    width: 100%;
+  }
+  .input-container button {
+    width: 100%;
   }
 }
