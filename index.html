@@ -3,27 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Smart Healthcare Chatbot</title>
+  <title>Health Chatbot</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.ico" /> <!-- Optional favicon -->
 </head>
 <body>
   <div id="app">
-    <h1 class="title">Smart Healthcare Chatbot</h1>
+    <h1 class="title">🩺 Health Chatbot</h1>
+
+    <!-- Chat container -->
     <div class="chat-container" id="chat-box"></div>
 
+    <!-- Input area -->
     <div class="input-container">
-      <input id="userInput" type="text" placeholder="Describe your symptoms..." autocomplete="off" />
-      <input id="ageInput" type="number" placeholder="Age" min="1" />
-      <button id="sendBtn">Send</button>
-    </div>
-
-    <div style="text-align:center; padding:10px; background: #0f172a;">
+      <input id="user-input" type="text" placeholder="Enter your symptoms..." />
+      <input id="age-input" type="number" placeholder="Enter your age" min="1" />
+      <button id="send-button">Send</button>
+  
+  </div>
+  <div style="text-align:center; padding:10px; background: #0f172a;">
       <button id="clearChatBtn" class="clear-btn">🧹 Clear Chat</button>
     </div>
-  </div>
 
-  <script src="script.js"></script>
+  <!-- Dataset and script -->
   <script src="dataset.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
